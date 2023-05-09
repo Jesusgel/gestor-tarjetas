@@ -1,6 +1,7 @@
 package com.crud.tarjeta.api_tarjetas.controller;
 
 import com.crud.tarjeta.api_tarjetas.dto.TarjetaDto;
+import com.crud.tarjeta.api_tarjetas.mappers.IMapperStruct;
 import com.crud.tarjeta.api_tarjetas.model.Tarjeta;
 import com.crud.tarjeta.api_tarjetas.service.ITarjetaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +21,13 @@ public class TarjetaController {
     @Autowired
     private ITarjetaService iTarjetaService;
 
+    @Autowired
+    private IMapperStruct iMapperStruct;
+
 
     public ResponseEntity<List<TarjetaDto>>  listar(){
         // Necesito MAPEAR
-        List<TarjetaDto> tarjetas =  null;
+        List<TarjetaDto> tarjetas =  IMapperStruct.INSTANCE.TarjetasToTarjetasDtos(iTarjetaService.listar());
         return new ResponseEntity<>(tarjetas, HttpStatus.OK);
     }
 

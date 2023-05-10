@@ -7,9 +7,7 @@ import com.crud.tarjeta.api_tarjetas.service.ITarjetaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,10 +23,29 @@ public class TarjetaController {
     private IMapperStruct iMapperStruct;
 
 
+    @GetMapping("/")
     public ResponseEntity<List<TarjetaDto>>  listar(){
-        // Necesito MAPEAR
-        List<TarjetaDto> tarjetas =  IMapperStruct.INSTANCE.TarjetasToTarjetasDtos(iTarjetaService.listar());
-        return new ResponseEntity<>(tarjetas, HttpStatus.OK);
+        List<TarjetaDto> lstTarjetas =  IMapperStruct.INSTANCE.TarjetasToTarjetasDtos(iTarjetaService.listar());
+        return new ResponseEntity<>(lstTarjetas, HttpStatus.OK);
     }
+
+    @PostMapping("/")
+    public ResponseEntity  guardar(@RequestBody Tarjeta objTarjeta) {
+        int intOk = iTarjetaService.guardar(objTarjeta);
+        return new ResponseEntity<>(intOk, HttpStatus.CREATED);
+    }
+
+    @PutMapping("/")
+    public ResponseEntity  actualizar(@RequestBody Tarjeta objTarjeta) {
+        int intOk =  iTarjetaService.actualizar(objTarjeta);
+        return new ResponseEntity<>(intOk, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity  eliminar(@PathVariable int id) {
+        int intOk =  iTarjetaService.eliminar(id);
+        return new ResponseEntity<>(intOk, HttpStatus.OK);
+    }
+
 
 }

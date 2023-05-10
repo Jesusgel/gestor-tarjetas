@@ -16,9 +16,10 @@ public class TarjetaRepositoryImpl implements  ITarjetaRepository{
 
     @Override
     public int guardar(Tarjeta tarjeta) {
-        String SQL = "INSERT INTO tarjeta VALUES(?,?,?,?,GETDATE(),GETDATE(),?)";
-        return jdbcTemplate.update(SQL, new Object[]{   tarjeta.getNombreTitular(),tarjeta.getNumeroTarjeta(), tarjeta.getNombreBanco(),tarjeta.getCvv(),tarjeta.getFechaCreacion(), tarjeta.getFechaModificacion(), tarjeta.getEstatus()});
+        String SQL = "INSERT INTO tarjeta (NombreTitular,NumeroTarjeta,NombreBanco,Cvv)  VALUES(?,?,?,?)";
+        return jdbcTemplate.update(SQL, new Object[]{   tarjeta.getNombreTitular(),tarjeta.getNumeroTarjeta(), tarjeta.getNombreBanco(),tarjeta.getCvv()});
     }
+
 
     @Override
     public List<Tarjeta> listar() {

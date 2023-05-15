@@ -8,9 +8,9 @@ import java.io.Serializable;
 
 @Getter
 @Setter
-public class TarjetaDto implements Serializable {
+public class TarjetaDto {
 
-    private static  final long serialVersionUID = 1L;
+    //private static  final long serialVersionUID = 1L;
 
     private String nombreTitular;
     private String numeroTarjeta;

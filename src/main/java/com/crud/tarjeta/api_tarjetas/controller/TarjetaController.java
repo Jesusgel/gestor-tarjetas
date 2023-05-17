@@ -36,7 +36,7 @@ public class TarjetaController {
     @GetMapping("/listar")
     public ResponseEntity<MensajeDto<List<TarjetaDto>>>  listar(){
         MensajeDto<List<TarjetaDto>>  objMensajeDto = new MensajeDto<>();
-        List<TarjetaDto>  lstTarjetasDto = new ArrayList<>();
+        List<TarjetaDto>  lstTarjetasDto; //= new ArrayList<>();
         try {
             lstTarjetasDto =  IMapperStruct.INSTANCE.TarjetasToTarjetasDtos(iTarjetaService.listar());
             objMensajeDto.setObjeto(lstTarjetasDto);
@@ -47,6 +47,7 @@ public class TarjetaController {
             objMensajeDto.setObjeto(null);
             objMensajeDto.setCodigo(ConstantesUtil.CODIGO_ERROR);
             objMensajeDto.setMensaje(ConstantesUtil.MENSAJE_ERROR);
+            return RespuestaUtil.error(objMensajeDto);
         }
         return RespuestaUtil.ok(objMensajeDto);
     }
@@ -59,12 +60,16 @@ public class TarjetaController {
            if(intOk > 0) {
                objMensajeDto.setCodigo(ConstantesUtil.CODIGO_EXITO);
                objMensajeDto.setMensaje(ConstantesUtil.MENSAJE_EXITO);
+           }else{
+               objMensajeDto.setCodigo(ConstantesUtil.CODIGO_SIN_INFO);
+               objMensajeDto.setMensaje(ConstantesUtil.MENSAJE_SIN_INFO);
            }
 
        }catch (Exception ex){
            objLogger.error(ex);
            objMensajeDto.setCodigo(ConstantesUtil.CODIGO_ERROR);
            objMensajeDto.setMensaje(ConstantesUtil.MENSAJE_ERROR);
+           return RespuestaUtil.error(objMensajeDto);
        }
         return RespuestaUtil.nuevo(objMensajeDto);
     }
@@ -77,12 +82,16 @@ public class TarjetaController {
             if(intOk > 0) {
                 objMensajeDto.setCodigo(ConstantesUtil.CODIGO_EXITO);
                 objMensajeDto.setMensaje(ConstantesUtil.MENSAJE_EXITO);
+            }else{
+                objMensajeDto.setCodigo(ConstantesUtil.CODIGO_SIN_INFO);
+                objMensajeDto.setMensaje(ConstantesUtil.MENSAJE_SIN_INFO);
             }
 
         }catch (Exception ex){
             objLogger.error(ex);
             objMensajeDto.setCodigo(ConstantesUtil.CODIGO_ERROR);
             objMensajeDto.setMensaje(ConstantesUtil.MENSAJE_ERROR);
+            return RespuestaUtil.error(objMensajeDto);
         }
         return RespuestaUtil.ok(objMensajeDto);
     }
@@ -95,12 +104,16 @@ public class TarjetaController {
             if(intOk > 0) {
                 objMensajeDto.setCodigo(ConstantesUtil.CODIGO_EXITO);
                 objMensajeDto.setMensaje(ConstantesUtil.MENSAJE_EXITO);
+            }else{
+                objMensajeDto.setCodigo(ConstantesUtil.CODIGO_SIN_INFO);
+                objMensajeDto.setMensaje(ConstantesUtil.MENSAJE_SIN_INFO);
             }
 
         }catch (Exception ex){
             objLogger.error(ex);
             objMensajeDto.setCodigo(ConstantesUtil.CODIGO_ERROR);
             objMensajeDto.setMensaje(ConstantesUtil.MENSAJE_ERROR);
+            return RespuestaUtil.error(objMensajeDto);
         }
         return RespuestaUtil.ok(objMensajeDto);
     }

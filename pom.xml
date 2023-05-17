@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>com.crud.tarjeta</groupId>
 	<artifactId>api_tarjetas</artifactId>
-	<version>0.2.0-SNAPSHOT</version>
+	<version>0.2.1-SNAPSHOT</version>
 	<name>api_tarjetas</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
